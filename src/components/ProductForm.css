@@ -1,0 +1,100 @@
+.product-form-container {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(181, 79, 79, 0.1);
+    max-width: 500px;
+    margin: 30px auto; 
+    font-family: Arial, sans-serif;
+    color: #757373;
+}
+
+.product-form-container h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.product-form-container div {
+    margin-bottom: 18px; 
+}
+
+.product-form-container label {
+    display: block; 
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.product-form-container input[type="text"],
+.product-form-container input[type="number"] {
+    width: calc(100% - 20px); 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; 
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: #dbdaeb;
+    color: #333;
+}
+
+.product-form-container input[type="text"]:focus,
+.product-form-container input[type="number"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.product-form-container input:-webkit-autofill,
+.product-form-container input:-webkit-autofill:hover,
+.product-form-container input:-webkit-autofill:focus,
+.product-form-container input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #e8e2e2 inset !important;
+    -webkit-text-fill-color: #333 !important; 
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.product-form-container button {
+    display: block; 
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 25px; 
+}
+
+.product-form-container button:hover {
+    background-color: #0056b3;
+}
+
+.product-form-container button:active {
+    background-color: #004085;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #eef2f7;
+    font-family: Arial, sans-serif;
+}
+
+.App {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.App h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
