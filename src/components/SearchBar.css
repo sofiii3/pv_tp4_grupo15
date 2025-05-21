@@ -1,0 +1,33 @@
+.search-bar-container {
+    margin: 20px auto; 
+    max-width: 500px; 
+    padding: 0 10px;
+}
+
+.search-bar-container input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px; 
+    font-size: 1.1em;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; 
+    background-color: #ffffff; 
+    color: #333; 
+}
+
+.search-bar-container input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.search-bar-container input:-webkit-autofill,
+.search-bar-container input:-webkit-autofill:hover,
+.search-bar-container input:-webkit-autofill:focus,
+.search-bar-container input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    -webkit-text-fill-color: #333 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
