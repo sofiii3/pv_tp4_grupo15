@@ -2,7 +2,7 @@ import React from 'react';
 import ProductItem from './ProductItem';
 import './ProductList.css';
 
-function ProductList({ products }) {
+function ProductList({ products, onEdit, onDelete }) {
   return (
     <div className="product-list-container">
       <h2>Lista de Productos</h2>
@@ -11,7 +11,8 @@ function ProductList({ products }) {
       ) : (
         <div className="product-list-grid">
           {products.map((product) => (
-            <ProductItem key={product.id} product={product} />
+            <ProductItem key={product.id} product={product} onEdit={onEdit} onDelete={onDelete} />
+            
           ))}
         </div>
       )}

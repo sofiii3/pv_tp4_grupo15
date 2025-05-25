@@ -1,7 +1,8 @@
 import React from 'react';
 import './ProductItem.css';
 
-function ProductItem({ product }) {
+
+function ProductItem({ product, onEdit, onDelete }) {
   return (
     <div className="product-item">
       <h3>{product.descripcion}</h3>
@@ -11,6 +12,10 @@ function ProductItem({ product }) {
       <p>Precio con Descuento: ${product.precioConDescuento}</p>
       <p>Stock: {product.stock}</p>
       {/* Aca van los botones de editar y eliminar*/}
+      <p className="product-actions">
+        <button onClick={() => onEdit(product)}>Editar</button>
+        <button onClick={() => onDelete(product.id)}>Eliminar</button>
+      </p>
     </div>
   );
 }

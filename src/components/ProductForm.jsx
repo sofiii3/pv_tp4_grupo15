@@ -1,13 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './ProductForm.css';
 
-function ProductForm({ onAddProduct }) {
+function ProductForm({ onAddProduct, productToEdit, onCancelEdit }) {
   const [productData, setProductData] = useState({
     descripcion: '',
     precioUnitario: '',
     descuento: '',
     stock: '',
   });
+
+  useEffect(() => {
+    if (productToEdit) {
+      setProductData({
+        descripcion: productToEdit.descripcion,
+        precioUnitario: productToEdit.precioUnitario,
+        descuento: productToEdit.descuento,
+        stock: productToEdit.stock,
+      });
+    } else {
+      setProductData({
+        descripcion: '',
+        precioUnitario: '',
+        descuento: '',
+        stock: '',
+      });
+    }
+  }, [productToEdit]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,14 +44,10 @@ function ProductForm({ onAddProduct }) {
     let precioConDescuento = precioUnitarioNum;
     if (!isNaN(precioUnitarioNum) && !isNaN(descuentoNum) && descuentoNum >= 0 && descuentoNum <= 100) {
       precioConDescuento = precioUnitarioNum * (1 - descuentoNum / 100);
-    } else if (isNaN(descuentoNum)) {
-      precioConDescuento = precioUnitarioNum;
     }
 
-    const newId = Date.now().toString(); 
-
-    const productToAdd = {
-      id: newId,
+    const productToSave = {
+      id: productToEdit ? productToEdit.id : Date.now().toString(),
       descripcion: productData.descripcion,
       precioUnitario: precioUnitarioNum,
       descuento: descuentoNum,
@@ -41,7 +55,7 @@ function ProductForm({ onAddProduct }) {
       stock: parseInt(productData.stock),
     };
 
-    onAddProduct(productToAdd);
+    onAddProduct(productToSave);
 
     setProductData({
       descripcion: '',
@@ -49,11 +63,16 @@ function ProductForm({ onAddProduct }) {
       descuento: '',
       stock: '',
     });
+
+    if (productToEdit && onCancelEdit) {
+      onCancelEdit(); // Salir del modo edición después de guardar
+    }
   };
 
   return (
-   <form onSubmit={handleSubmit} className="product-form-container">
-      <h2>Agregar Nuevo Producto</h2>
+    <form onSubmit={handleSubmit} className="product-form-container">
+      <h2>{productToEdit ? 'Editar Producto' : 'Agregar Nuevo Producto'}</h2>
+
       <div>
         <label htmlFor="descripcion">Descripción:</label>
         <input
@@ -65,6 +84,7 @@ function ProductForm({ onAddProduct }) {
           required
         />
       </div>
+
       <div>
         <label htmlFor="precioUnitario">Precio Unitario:</label>
         <input
@@ -78,6 +98,7 @@ function ProductForm({ onAddProduct }) {
           required
         />
       </div>
+
       <div>
         <label htmlFor="descuento">Descuento (%):</label>
         <input
@@ -91,6 +112,7 @@ function ProductForm({ onAddProduct }) {
           step="1"
         />
       </div>
+
       <div>
         <label htmlFor="stock">Stock:</label>
         <input
@@ -104,7 +126,18 @@ function ProductForm({ onAddProduct }) {
           required
         />
       </div>
-      <button type="submit">Agregar Producto</button>
+
+      <div className="form-buttons">
+        <button type="submit">
+          {productToEdit ? 'Guardar Cambios' : 'Agregar Producto'}
+        </button>
+
+        {productToEdit && (
+          <button type="button" onClick={onCancelEdit}>
+            Cancelar
+          </button>
+        )}
+      </div>
     </form>
   );
 }
